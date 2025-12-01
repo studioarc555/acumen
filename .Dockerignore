@@ -1,24 +1,26 @@
 Dependencies and Builds
 
 node_modules
-.next
+.npm
+npm-debug.log
+.yarn
+.pnp.*
+.next/cache
+.next/static
+
+Development and Local Files
+
 .git
 .gitignore
-
-Logs and Debugging
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.npm
-
-Local Environment
-
-.env
-.env.local
-.DS_Store
+.vercel
 .vscode
+.DS_Store
 
-Next.js Specific
+Next.js Standalone Mode Exclusions
 
-out
+We only want the STANDALONE folder (which contains only necessary files),
+
+so we ignore the entire standard build folder.
+
+.next
+!/public
