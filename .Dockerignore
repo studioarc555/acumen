@@ -1,0 +1,24 @@
+Dependencies and Builds
+
+node_modules
+.next
+.git
+.gitignore
+
+Logs and Debugging
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+
+Local Environment
+
+.env
+.env.local
+.DS_Store
+.vscode
+
+Next.js Specific
+
+out
