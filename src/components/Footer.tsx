@@ -160,15 +160,21 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           {/* Brand */}
           <div className="md:col-span-5">
-            <a href="#" className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-lg bg-[hsl(277,72%,26%)] flex items-center justify-center text-white font-bold text-lg">
-                A
-              </div>
-              <span className="font-serif text-xl font-bold text-slate-900">
-                Acumen Arc
-              </span>
-            </a>
-
+            {/* Brand */}
+            <div className="md:col-span-5">
+              <a href="#" className="flex items-center gap-2 mb-6">
+                <div className="w-8 h-8 rounded-lg bg-[hsl(277,72%,26%)] flex items-center justify-center">
+                  <img
+                    src="/assets/TheArcLog.png"
+                    alt="The Acumen Arc Logo"
+                    className="w-full h-full object-cover rounded-lg"
+                  />
+                </div>
+                <span className="font-serif text-xl font-bold text-slate-900">
+                  Acumen Arc
+                </span>
+              </a>
+            </div>
             <p className="text-slate-500 mb-8 max-w-xs leading-relaxed">
               Where creative strategy and technical expertise converge to deliver
               digital excellence.
@@ -251,4 +257,3 @@ export const Footer = () => {
   );
 };
 
-export default Footer;

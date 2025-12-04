@@ -195,126 +195,130 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Expertise", href: "#services" },
-    { name: "Work", href: "#case-studies" },
-    { name: "Philosophy", href: "#about" },
-  ];
+    const navLinks = [
+        { name: "Home", href: "#home" },
+        { name: "Expertise", href: "#services" },
+        { name: "Work", href: "#case-studies" },
+        { name: "Philosophy", href: "#about" },
+    ];
 
-  return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white/80 backdrop-blur-xl py-3 border-b border-slate-200/50"
-          : ""
-      )}
-    >
-      <div className="container mx-auto px-6 md:px-8">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-2 group z-50">
-            <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-gray-900 text-white font-bold">
-              A
-            </div>
-            <span className="font-serif text-lg font-bold tracking-tight text-slate-900">
-              Acumen Arc
-            </span>
-          </a>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1 p-1 bg-white/50 backdrop-blur-lg rounded-full border border-slate-200/50">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                className="px-5 py-2 text-sm font-medium text-slate-600 rounded-full hover:bg-slate-100 hover:text-slate-900 transition"
-              >
-                {link.name}
-              </a>
-            ))}
-          </div>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-4">
-            <Button
-              variant="primary"
-              size="md"
-              onClick={() =>
-                document
-                  .getElementById("contact")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Let's Talk
-            </Button>
-          </div>
-
-          {/* Mobile Toggle */}
-          <button
-            className="md:hidden p-2 rounded-full hover:bg-slate-100 transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-slate-900" />
-            ) : (
-              <Menu className="w-6 h-6 text-slate-900" />
-            )}
-          </button>
-
-          {/* Mobile Menu */}
-          <div
+    return (
+        <header
             className={cn(
-              "fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center transition-all duration-300",
-              isMobileMenuOpen
-                ? "opacity-100 visible"
-                : "opacity-0 invisible pointer-events-none"
+                "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+                isScrolled
+                    ? "bg-white/80 backdrop-blur-xl py-3 border-b border-slate-200/50"
+                    : ""
             )}
-          >
-            <div className="flex flex-col items-center gap-6 w-full px-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-2xl font-serif font-medium text-slate-800 hover:text-slate-900 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </a>
-              ))}
+        >
+            <div className="container mx-auto px-6 md:px-8">
+                <nav className="flex items-center justify-between">
+                    {/* Logo */}
+                    <a href="#" className="flex items-center gap-2 group z-50">
+                        <div className="w-10 h-10 flex items-center justify-center rounded-xl text-white font-bold">
+                            <img
+                                src="/assets/TheArc.gif"
+                                alt="The Acumen Arc Logo"
+                                className="w-full h-full object-cover rounded-xl"
+                            />
+                        </div>
+                        <span className="font-serif text-lg font-bold tracking-tight text-slate-900">
+                            Acumen Arc
+                        </span>
+                    </a>
 
-              <div className="h-px w-12 bg-slate-200 my-4" />
+                    {/* Desktop Nav */}
+                    <div className="hidden md:flex items-center gap-1 p-1 bg-white/50 backdrop-blur-lg rounded-full border border-slate-200/50">
+                        {navLinks.map((link) => (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                className="px-5 py-2 text-sm font-medium text-slate-600 rounded-full hover:bg-slate-100 hover:text-slate-900 transition"
+                            >
+                                {link.name}
+                            </a>
+                        ))}
+                    </div>
 
-              <Button
-                variant="secondary"
-                size="lg"
-                className="w-full max-w-xs"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  document
-                    .getElementById("contact")
-                    ?.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                Start Your Project
-              </Button>
+                    {/* Desktop CTA */}
+                    <div className="hidden md:flex items-center gap-4">
+                        <Button
+                            variant="primary"
+                            size="md"
+                            onClick={() =>
+                                document
+                                    .getElementById("contact")
+                                    ?.scrollIntoView({ behavior: "smooth" })
+                            }
+                        >
+                            Let's Talk
+                        </Button>
+                    </div>
+
+                    {/* Mobile Toggle */}
+                    <button
+                        className="md:hidden p-2 rounded-full hover:bg-slate-100 transition-colors"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label="Toggle menu"
+                    >
+                        {isMobileMenuOpen ? (
+                            <X className="w-6 h-6 text-slate-900" />
+                        ) : (
+                            <Menu className="w-6 h-6 text-slate-900" />
+                        )}
+                    </button>
+
+                    {/* Mobile Menu */}
+                    <div
+                        className={cn(
+                            "fixed inset-0 bg-white/95 backdrop-blur-xl z-40 flex flex-col justify-center items-center transition-all duration-300",
+                            isMobileMenuOpen
+                                ? "opacity-100 visible"
+                                : "opacity-0 invisible pointer-events-none"
+                        )}
+                    >
+                        <div className="flex flex-col items-center gap-6 w-full px-8">
+                            {navLinks.map((link) => (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    className="text-2xl font-serif font-medium text-slate-800 hover:text-slate-900 transition-colors"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                >
+                                    {link.name}
+                                </a>
+                            ))}
+
+                            <div className="h-px w-12 bg-slate-200 my-4" />
+
+                            <Button
+                                variant="secondary"
+                                size="lg"
+                                className="w-full max-w-xs"
+                                onClick={() => {
+                                    setIsMobileMenuOpen(false);
+                                    document
+                                        .getElementById("contact")
+                                        ?.scrollIntoView({ behavior: "smooth" });
+                                }}
+                            >
+                                Start Your Project
+                            </Button>
+                        </div>
+                    </div>
+                </nav>
             </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
+        </header>
+    );
 };
 
 export default Navbar;
