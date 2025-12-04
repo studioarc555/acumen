@@ -42,7 +42,7 @@
   }) {
     return (
       <html lang="en" className="scroll-smooth">
-        <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-slate-700`}>
+        <body className={`${inter.variable} ${playfair.variable} font-sans antialiased text-slate-700 overflow-x-hidden`}>
           {children}
         </body>
       </html>
