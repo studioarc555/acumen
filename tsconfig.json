@@ -22,9 +22,10 @@
         "name": "next"
       }
     ],
+    // *** FIX: Changed path to point to the 'src' directory ***
     "paths": {
       "@/*": [
-        "./*"
+        "./src/*"
       ]
     }
   },

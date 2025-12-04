@@ -1,33 +1,27 @@
 import React from 'react';
 
-import Header from '../src/components/Header';
-import Hero from '../src/components/Hero';
-// import StatsAndClients from '../src/components/StatsandPart'; // <-- New import
-import Expertise from '@/src/components/Expertise';
-import AuthorNote from '@/src/components/AuthorNote';
-import Clients from '@/src/components/Clients';
-import CTABut from '@/src/components/CTABut'; 
-import VisionMission from '@/src/components/VisionMission';
-import Footer from '@/src/components/Footer';
+import { Navbar } from "@/components/Navbar";
+import { Hero } from "@/components/Hero";
+import { Services } from "@/components/Services";
+import { StatsAndPartners } from "@/components/StatsandPart"; // Standardized casing
+import { CaseStudies } from "@/components/CaseStudies";
+import { About } from "@/components/About";
+import { CTA } from "@/components/CTA"; // Standardized back to the original CTA file path
+import { Footer } from "@/components/Footer";
 
-
-export default function HomePage() {
+export default function Home() {
   return (
     <>
-      <Header />
-
-      <Hero />
-
-      <Expertise />
-
-      <AuthorNote />
-
-      <Clients />
-
-      <VisionMission />
-
-      <CTABut />
-
+      <Navbar />
+      <main>
+        <Hero />
+        {/* Components are now correctly imported and named */}
+        <Services /> 
+        <StatsAndPartners /> 
+        <CaseStudies /> 
+        <About /> 
+        <CTA />
+      </main>
       <Footer />
     </>
   );

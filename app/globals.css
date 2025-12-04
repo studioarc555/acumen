@@ -2,7 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply bg-acumen-light text-acumen-purple font-sans;
+@layer base {
+  :root {
+    /* Font Definitions (used by Next.js font loading and tailwind.config.ts) */
+    --font-sans: Inter, sans-serif;
+    --font-serif: "Playfair Display", serif;
+
+    /* Custom Color Variables (useful for defining theme colors outside of utility classes) */
+    --acumen-primary: hsl(277,72%,26%);
+    --acumen-secondary: hsl(277,72%,22%);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth; /* Enhances scrolling behavior */
+  }
+
+  body {
+    /* Apply base background and text color defaults */
+    @apply bg-white text-slate-800;
+    min-height: 100vh; /* Ensure body takes full height */
+  }
 }
 
+/* This is often required for the animation utilities */
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+}

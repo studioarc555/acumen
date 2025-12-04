@@ -28,7 +28,7 @@
 //     'DSEnergize', 
 //     'Client Seven', 
 //     'Client Eight',
-    
+
 //     // Duplicate the logos to ensure smooth infinite loop
 //     'Amanza', 
 //     'Astha Narang', 
@@ -124,14 +124,14 @@
 //         // Trigger the stats animation immediately on component mount
 //         setStatsTriggered(true);
 //     }, []);
-    
+
 //     // Function to determine the content of the logo tile
 //     const renderLogoContent = (logo: string) => {
 //         if (logo === 'DSEnergize') {
 //             // Use the DSEnergize Logo Image Component, which now includes the text
 //             return <DSEnergizeLogoImage />;
 //         }
-        
+
 //         // Default: Placeholder text for other logos
 //         return (
 //             <span className="text-navy/70 text-lg font-semibold whitespace-nowrap">
@@ -143,7 +143,7 @@
 //     return (
 //         <section className="w-full py-16 bg-cream">
 //             <div className="mx-auto max-w-7xl px-6">
-                
+
 //                 {/* --- A. Statistics Cards --- */}
 //                 <h2 className="text-3xl font-bold text-center text-navy mb-12">
 //                     Our Impact in Numbers
@@ -190,7 +190,7 @@
 //                             opacity: 1;
 //                         }
 //                     `}</style>
-                    
+
 //                     <div className="client-track">
 //                         {CLIENT_LOGOS.map((logo, index) => (
 //                             <div 
@@ -212,3 +212,42 @@
 // }
 
 // export default StatsandPart;
+
+
+// This file does not need "use client" as it is a static component.
+// It needs the cn utility, but does not rely on any other external components (like Button).
+
+export const StatsAndPartners = () => {
+  const stats = [
+    { value: "210+", label: "Partners" },
+    { value: "33%", label: "Avg ROI Increase" },
+    { value: "9+", label: "Years Experience" },
+  ];
+
+  return (
+    <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[hsl(277,72%,26%)]/20 mix-blend-overlay" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-slate-700/50">
+          {stats.map((stat, idx) => (
+            <div
+              key={idx}
+              className="p-10 text-center group hover:bg-white/5 transition-all duration-300"
+            >
+              <p className="font-serif text-5xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-white to-slate-200 bg-clip-text text-transparent">
+                {stat.value}
+              </p>
+
+              <p className="text-slate-400 font-medium tracking-wide uppercase text-sm">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StatsAndPartners;
