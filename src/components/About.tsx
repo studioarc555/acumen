@@ -49,7 +49,7 @@ export const About = () => (
           <div className="relative">
             {/* FIX: Quote Box - Changed to light/medium gradient and dark text for contrast */}
             <div className="aspect-square rounded-3xl p-10 flex flex-col justify-between shadow-2xl shadow-acumen-primary/40 
-                        bg-gradient-to-br from-palette-lavender-muted/50 to-acumen-primary/10 text-acumen-secondary border-2 border-purple-Heart backdrop-blur-md">
+                        bg-gradient-to-br from-palette-lavender-muted/50 to-acumen-primary/10 text-acumen-secondary border-2 border-purple-Heart backdrop-blur-md border-r-2 border-acumen-primary">
               <Quote className="w-12 h-12 text-acumen-primary/40 mb-4" />
               <blockquote className="font-serif text-2xl md:text-3xl leading-snug">
                 "True success isn't about chasing the next trend—it's about building a foundation

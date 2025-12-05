@@ -27,19 +27,28 @@ export const MAIN_NAV_LINKS: NavItem[] = [
 
 // --- Dynamic Service Categories (Used in the horizontal Category Bar and Homepage) ---
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
-  { title: 'All Services', href: '/services', icon: Zap, color: 'bg-gray-800', description: 'Explore all our core offerings.' },
+  { 
+    title: 'All Services', 
+    href: '/services', 
+    icon: Zap, 
+    // FIX: Neutral dark color for default category
+    color: 'bg-palette-purple-heart', 
+    description: 'Explore all our core offerings.' 
+  },
   {
     title: 'Web Development',
     href: '/services/web',
     icon: Code,
-    color: 'bg-indigo-600',
+    // FIX: Using the medium-dark shade
+    color: 'bg-palette-royal-purple',
     description: 'Bespoke, high-performance websites built with Next.js and secure APIs.',
   },
   {
     title: 'Marketing & PR',
     href: '/services/marketing',
     icon: BarChart3,
-    color: 'bg-rose-600',
+    // FIX: Using the main brand color for featured items
+    color: 'bg-acumen-primary',
     description: 'Data-driven campaigns to elevate your brand presence and market authority.',
     featured: true, // Used for the large right card on the home page
   },
@@ -47,28 +56,32 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     title: 'App Development',
     href: '/services/app',
     icon: Smartphone,
-    color: 'bg-cyan-600',
+    // FIX: Using a lighter accent shade
+    color: 'bg-palette-pastel-lavender',
     description: 'Native and cross-platform mobile applications for iOS and Android.',
   },
   {
     title: 'Video Shoots',
     href: '/services/video',
     icon: Video,
-    color: 'bg-green-600',
+    // FIX: Using the medium-dark shade with transparency for variation
+    color: 'bg-palette-royal-purple/80',
     description: 'High-definition video production for commercials, corporate, and social media.',
   },
   {
     title: 'Podcast Production',
     href: '/services/podcast',
     icon: Mic,
-    color: 'bg-amber-600',
+    // FIX: Using the lighter brand tint
+    color: 'bg-acumen-light',
     description: 'From recording to final mastering, we handle full-service audio production.',
   },
   {
     title: 'Brand Identity',
     href: '/services/branding',
     icon: Palette,
-    color: 'bg-fuchsia-600',
+    // FIX: Using the main brand color for impact
+    color: 'bg-acumen-primary',
     description: 'Crafting compelling logos, style guides, and visual assets that resonate.',
   },
 ];

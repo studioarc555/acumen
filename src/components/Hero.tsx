@@ -1,76 +1,3 @@
-// "use client";
-// import { ArrowRight } from "lucide-react";
-
-// export default function Hero() {
-//     return (
-//         <section className="w-full bg-acumen-light-900">
-//             <div className="mx-auto max-w-7xl px-6 py-24 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-//                 {/* LEFT TEXT SECTION */}
-//                 <div>
-//                     <h1 className="text-4xl md:text-6xl font-bold leading-tight text-acumen-purple-800">
-//                         We Build Brands That <span className="text-acumen-purple-700">Inspire & Convert</span>
-//                     </h1>
-
-//                     <p className="mt-6 text-xl max-w-lg text-acumen-purple-800">
-//                         Acumen Arc is your creative & strategic partner — delivering results-driven
-//                         digital experiences for ambitious brands.
-//                     </p>
-
-//                     {/* CTA BUTTONS */}
-//                     <div className="mt-8 flex gap-4">
-
-//                         {/* CTA 1 */}
-//                         <a
-//                             href="/contact"
-//                             className="px-6 py-3 rounded-xl font-medium cursor-pointer
-//                             border-2 border-acumen-purple-700
-//                             bg-acumen-purple-700 text-acumen-purple-50
-//                             transition-all duration-300
-//                             hover:bg-acumen-purple-50 hover:text-acumen-purple-700
-//                             hover:scale-105 shadow-md"
-//                         >
-//                             Get Started
-//                         </a>
-
-//                         {/* CTA 2 */}
-//                         <a
-//                             href="/services"
-//                             className="px-6 py-3 rounded-xl font-medium cursor-pointer
-//                             border-2 border-acumen-purple-700
-//                             bg-acumen-purple-700 text-acumen-purple-50
-//                             transition-all duration-300
-//                             hover:bg-acumen-purple-50 
-//                             hover:text-acumen-purple-700                            
-//                             hover:scale-105 shadow-md
-//                             flex items-center gap-2"
-//                         >
-//                             Our Services →
-//                         </a>
-
-//                     </div>
-//                 </div>
-
-//                 {/* RIGHT VIDEO SECTION */}
-//                 {/* <div className="relative">
-//                     <div className="w-full h-72 md:h-96 rounded-2xl shadow-inner bg-acumen-purple-900 overflow-hidden">
-//                         <video
-//                             src="/assets/herovid.mp4"
-//                             autoPlay
-//                             loop
-//                             muted
-//                             playsInline
-//                             className="w-full h-full object-cover"
-//                         />
-//                     </div>
-//                     <p className="text-sm text-center mt-2 text-acumen-purple-800">
-//                         (The Acumen Arc Core Cycle Visual)
-//                     </p>
-//                 </div> */}
-//             </div>
-//         </section>
-//     );
-// }
 "use client";
 
 import { ArrowRight, Sparkles, ChevronDown } from "lucide-react";
@@ -83,8 +10,9 @@ export const Hero = () => {
       className="relative min-h-[100dvh] flex items-center pt-28 pb-20"
     >
       {/* Abstract Background - Using primary brand colors for subtle gradient blur */}
-      <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-gradient-to-br from-acumen-primary/20 to-palette-blue-slate/30 rounded-full blur-3xl" />
+      <div className="absolute top-[-20%] right-[-10%] w-[800px] h-[800px] bg-gradient-to-br from-[hsl(277,72%,26%)]/20 to-blue-600/20 rounded-full blur-3xl" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-palette-blue-slate/30 to-acumen-primary/20 rounded-full blur-3xl" />
+      {/* <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-gradient-to-tr from-blue-600/20 to-[hsl(277,72%,26%)]/20 rounded-full blur-3xl" /> */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/nc')] opacity-5" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -101,7 +29,7 @@ export const Hero = () => {
           {/* Headline */}
           <h1 className="animate-fade-in opacity-0 [animation-delay:400ms] font-serif text-5xl md:text-7xl lg:text-8xl font-bold leading-tight text-acumen-secondary mt-6 mb-4">
             Build Brands That <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-acumen-primary to-palette-lavender-muted">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-acumen-primary to-palette-acumen-secondary">
               Inspire & Convert
             </span>
           </h1>
@@ -145,7 +73,7 @@ export const Hero = () => {
               Trusted by visionary brands
             </p>
             <div className="flex flex-wrap justify-center gap-8 md:gap-12 opacity-60 grayscale">
-              {["Acme Corp", "GlobalTech", "Nebula", "Velocity", "FoxRun", "DSenergize"].map(
+              {["Acme Corp", "GlobalTech", "Nebula", "Velocity", "FoxRun", "DSEnergize"].map(
                 (logo) => (
                   <span
                     key={logo}

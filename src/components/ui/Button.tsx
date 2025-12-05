@@ -9,12 +9,20 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", ...props }, ref) => {
     const variants = {
-      // OBLITERATED bg-slate-900 and replaced with theme colors (acumen-primary/secondary)
+      // Primary: Uses dark purple for strong contrast
       primary: "bg-acumen-primary text-white hover:bg-acumen-secondary shadow-lg hover:shadow-acumen-primary/50",
+      
+      // FIX 1: Replaced hardcoded HSL with custom acumen colors
       secondary:
-        "bg-[hsl(277,72%,26%)] text-white hover:bg-[hsl(277,72%,22%)] shadow-lg",
-      outline: "border-2 border-slate-200 bg-transparent text-slate-700 hover:border-slate-400", // Fixed hover class
-      ghost: "hover:bg-slate-100 text-slate-600 hover:text-slate-900",
+        "bg-acumen-primary text-white hover:bg-acumen-secondary shadow-lg",
+        
+      // FIX 2: Replaced slate colors with acumen colors
+      outline: "border-2 border-acumen-primary/30 bg-transparent text-acumen-primary hover:border-acumen-secondary hover:text-acumen-secondary", 
+      
+      // FIX 3: Replaced slate colors with acumen colors/tints
+      ghost: "hover:bg-acumen-primary/10 text-acumen-light hover:text-acumen-secondary",
+      
+      // Glass: Retained original styling
       glass:
         "backdrop-blur-md bg-white/10 border border-white/20 text-white hover:bg-white/20",
     };

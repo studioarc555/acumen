@@ -67,10 +67,10 @@ export const Services = () => {
           </div>
 
           {/* Standardizing neutral text color to the darkest brand shade (acumen-secondary) */}
-          <p className="text-acumen-secondary text-lg max-w-md pb-1">
+          {/* <p className="text-acumen-secondary text-lg max-w-md pb-1">
             Comprehensive services tailored to drive growth and elevate your
             brand presence.
-          </p>
+          </p> */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

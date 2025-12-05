@@ -1,54 +1,19 @@
-// "use client";
-// import { Send } from "lucide-react";
-
-// export default function CTABut() {
-//     return (
-//         <section className="w-full bg-acumen-light-900 py-16 md:py-24">
-//             <div className="mx-auto max-w-5xl px-6 flex flex-col items-center text-center">
-
-//                 <h2 className="text-3xl md:text-5xl font-extrabold text-acumen-purple-900/90 leading-tight tracking-tight">
-//                     Ready to Transform Your Digital Presence?
-//                 </h2>
-
-//                 <p className="mt-4 mb-8 text-lg font-semibold text-acumen-purple-800 max-w-3xl">
-//                     Let's discuss your ambitious goals and craft a strategic plan 
-//                     to achieve measurable results.
-//                 </p>
-
-//                 {/* CTA Button */}
-//                 <a
-//                     href="/contact"
-//                     className="
-//                         px-8 py-3 rounded-full font-bold uppercase tracking-wider
-//                         bg-acumen-purple-700 text-acumen-purple-50
-//                         transition-all duration-300
-//                         flex items-center gap-2
-//                         hover:bg-acumen-purple-50 hover:text-acumen-purple-700 hover:border-2 border-acumen-purple-900
-//                         hover:scale-105 shadow-xl hover:shadow-acumen-purple-200
-//                     "
-//                 >
-//                     <Send className="w-5 h-5" />
-//                     Get in Touch
-//                 </a>
-
-//             </div>
-//         </section>
-//     );
-// }
-
 "use client";
 
-import { Button } from "@/components/ui/Button";
+import { Button } from '@/components/ui/Button';
 
 export const CTA = () => (
-  <section id="contact" className="py-24 bg-[#FDFCFE] relative">
+  // FIX 1: Section background changed from hex to subtle brand tint
+  <section id="contact" className="py-24 bg-white relative">
     <div className="container mx-auto px-6">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6">
+        {/* FIX 2: Headline text color updated to darkest brand shade */}
+        <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-acumen-secondary mb-6">
           Ready To Scale?
         </h2>
 
-        <p className="text-xl text-slate-600 mb-12 max-w-2xl mx-auto">
+        {/* FIX 3: Body text color updated to neutral shade */}
+        <p className="text-xl text-acumen-light mb-12 max-w-2xl mx-auto">
           Let's discuss your ambitious goals and craft a strategic plan tailored to you.
         </p>
 
@@ -56,7 +21,8 @@ export const CTA = () => (
           <Button
             variant="secondary"
             size="xl"
-            className="w-full sm:w-auto shadow-xl shadow-[hsl(277,72%,26%)]/40 hover:shadow-lg transition-shadow"
+            // FIX 4: Replaced hardcoded HSL shadow with clean brand shadow
+            className="w-full sm:w-auto shadow-xl shadow-acumen-primary/40 hover:shadow-lg transition-shadow"
             onClick={() =>
               document
                 .getElementById("contact")
@@ -69,7 +35,8 @@ export const CTA = () => (
           <Button
             variant="outline"
             size="xl"
-            className="w-full sm:w-auto"
+            // FIX: Overrides the default outline to use brand colors (which are necessary because the Button.tsx default outline still had slate border)
+            className="w-full sm:w-auto border-acumen-primary text-acumen-secondary hover:bg-acumen-primary/10 hover:border-acumen-primary"
             onClick={() =>
               document
                 .getElementById("services")
@@ -80,13 +47,11 @@ export const CTA = () => (
           </Button>
         </div>
 
-        <div className="mt-16 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-500">
-          {[
-            "Free 30-min Strategy Call",
-            "No Long-term Contracts",
-            "Results Guaranteed",
-          ].map((item) => (
+        {/* FIX 5: Feature text color updated to neutral shade */}
+        <div className="mt-16 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-acumen-light">
+          {["Free 30-min Strategy Call", "No Long-term Contracts", "Results Guaranteed"].map((item) => (
             <div key={item} className="flex items-center gap-2">
+              {/* Green color retained as it often signifies success/trust (standard) */}
               <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
               {item}
             </div>
