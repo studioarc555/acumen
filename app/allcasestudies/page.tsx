@@ -1,4 +1,4 @@
-import AllCaseStudies from "@/pages/AllCaseStudies";
+import AllCaseStudies from "@/components/pages/AllCaseStudies";
 
 export default function AllCase() {
   
