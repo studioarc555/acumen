@@ -56,10 +56,10 @@ export const Services = () => {
 
   return (
     // Added 'z-0' to the section to keep it below the navbar (assuming Navbar is z-50+)
-    <section id="services" className="py-4 md:py-20 bg-white relative z-0">
+    <section id="services" className="md:py-12 bg-white relative z-0">
       <div className="container mx-auto px-4 md:px-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 md:mb-6 gap-4 md:gap-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between md:mb-6 gap-4 md:gap-8">
           <div className="max-w-2xl">
             <span className="text-sm md:text-lg font-bold text-acumen-primary uppercase tracking-widest">
               Our Expertise <span className="font-serif"> & </span>
@@ -78,7 +78,7 @@ export const Services = () => {
             flex-col md:flex-row 
             md:overflow-x-auto md:snap-x md:snap-mandatory 
             gap-6 
-            py-16 /* Padding prevents clipping on hover lift */
+            py-12 /* Padding prevents clipping on hover lift */
             no-scrollbar
             px-2
           `}
@@ -107,9 +107,9 @@ export const Services = () => {
               }}
               className={`
                 /* CARD DIMENSIONS */
-                w-full h-[320px] 
+                w-full h-[300px] 
                 md:min-w-[550px] md:w-[550px] 
-                md:h-[480px] 
+                md:h-[400px] 
                 md:flex-shrink-0
                 
                 snap-center
