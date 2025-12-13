@@ -8,7 +8,8 @@ import {
     Phone,
     ArrowRight,
     CheckCircle2,
-    Loader2
+    Loader2,
+    ChevronDown
 } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
@@ -21,10 +22,9 @@ const ContactUs = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
     const [selectedServices, setSelectedServices] = useState<string[]>([]);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     // 1. CONFIGURATION: Define your receiving number here for WhatsApp integration
-    // Format: Country code + Number (No spaces, dashes, or plus signs)
-    // Example: For India (+91) and number 9876543210, use "919876543210"
     const RECIPIENT_NUMBER = "918920525465"; 
 
     const services = [
@@ -55,21 +55,19 @@ const ContactUs = () => {
         const serviceList = selectedServices.join(', ') || "None selected";
 
         // 3. Construct WhatsApp Message
-        // %0A creates a new line in the URL encoding
         const text = `*New Website Inquiry*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Interested in:* ${serviceList}%0A*Message:* ${message}`;
 
         // 4. Redirect logic with simulated loading delay
         setTimeout(() => {
-            // Open WhatsApp in a new tab
             window.open(`https://wa.me/${RECIPIENT_NUMBER}?text=${text}`, '_blank');
-            
             setIsSubmitting(false);
             setIsSuccess(true);
         }, 1500);
     };
 
     return (
-        <main className="min-h-screen bg-[#FDFCFE] font-sans selection:bg-acumen-primary selection:text-white flex flex-col">
+        // Added overflow-x-hidden here to prevent horizontal scroll
+        <main className="min-h-screen bg-[#FDFCFE] font-sans selection:bg-acumen-primary selection:text-white flex flex-col overflow-x-hidden">
             {/* INJECTED STYLES FOR PREVIEW ENVIRONMENT */}
             <style>{`
         :root {
@@ -105,14 +103,16 @@ const ContactUs = () => {
             <Navbar />
 
             {/* Main Content Wrapper - Holds Gradient Backgrounds and Page Content */}
-            <div className="relative flex-grow w-full overflow-hidden">
+            <div className="relative flex-grow w-full">
 
-                {/* --- BACKGROUND LAYERS (Restricted to this div only) --- */}
-                <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-[hsl(277,72%,26%)]/20 to-blue-600/20 rounded-full blur-3xl pointer-events-none z-0" />
-                <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-blue-600/20 to-[hsl(277,72%,26%)]/20 rounded-full blur-3xl pointer-events-none z-0" />
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/nc')] opacity-5 pointer-events-none z-0" />
+                {/* --- BACKGROUND LAYERS CONTAINER (Clips blobs separately) --- */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+                    <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-[hsl(277,72%,26%)]/20 to-blue-600/20 rounded-full blur-3xl" />
+                    <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-blue-600/20 to-[hsl(277,72%,26%)]/20 rounded-full blur-3xl" />
+                    <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/nc')] opacity-5" />
+                </div>
 
-                <div className="flex-grow pt-32 pb-20 px-6 relative z-10">
+                <div className="flex-grow pt-20 pb-12 px-6 relative z-10">
                     <div className="container mx-auto max-w-6xl">
 
                         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
@@ -149,7 +149,7 @@ const ContactUs = () => {
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-acumen-secondary mb-1">Visit Us</h3>
-                                            <p className="text-slate-500">CIE, 4C(Gate: 4), Jamia Milia Islamia<br />New Delhi, India 110020</p>
+                                            <p className="text-slate-500">CIE, 4C(Gate: 4), Jamia Milia Islamia<br />New Delhi, India 110025</p>
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +158,7 @@ const ContactUs = () => {
                             {/* RIGHT COLUMN: Interactive Form */}
                             <div className="relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
 
-                                {/* Decorative Blob - Keeping this local highlight for the form itself */}
+                                {/* Decorative Blob */}
                                 <div className="absolute -top-20 -right-20 w-80 h-80 bg-acumen-primary/5 rounded-full blur-3xl pointer-events-none" />
 
                                 <div className="bg-white/80 backdrop-blur-sm p-8 md:p-10 rounded-3xl shadow-xl shadow-acumen-primary/5 border border-slate-100 relative">
@@ -185,7 +185,7 @@ const ContactUs = () => {
                                                         id="name"
                                                         type="text"
                                                         required
-                                                        placeholder="John Doe"
+                                                        placeholder="Your Name"
                                                         className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 focus:border-acumen-primary focus:ring-1 focus:ring-acumen-primary outline-none transition-all placeholder:text-slate-400"
                                                     />
                                                 </div>
@@ -195,22 +195,47 @@ const ContactUs = () => {
                                                         id="email"
                                                         type="email"
                                                         required
-                                                        placeholder="john@company.com"
+                                                        placeholder="xyz@company.com"
                                                         className="w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 focus:border-acumen-primary focus:ring-1 focus:ring-acumen-primary outline-none transition-all placeholder:text-slate-400"
                                                     />
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-3">
+                                            {/* Services Section with Mobile Dropdown */}
+                                            <div className="space-y-3 relative">
                                                 <label className="text-sm font-semibold text-acumen-secondary">I'm interested in...</label>
-                                                <div className="flex flex-wrap gap-2">
+                                                
+                                                {/* Mobile Trigger Button */}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                                    className="md:hidden w-full px-4 py-3 rounded-xl bg-slate-50/50 border border-slate-200 text-left text-sm text-slate-600 flex justify-between items-center focus:border-acumen-primary focus:ring-1 focus:ring-acumen-primary transition-all"
+                                                >
+                                                    <span className="truncate mr-2">
+                                                        {selectedServices.length > 0 
+                                                            ? selectedServices.join(", ") 
+                                                            : "Select Services..."}
+                                                    </span>
+                                                    <ChevronDown className={cn("w-4 h-4 transition-transform duration-200 text-slate-400", isDropdownOpen && "rotate-180")} />
+                                                </button>
+
+                                                {/* Services List (Dropdown on Mobile, Grid on Desktop) */}
+                                                <div className={cn(
+                                                    "flex flex-wrap gap-2 transition-all",
+                                                    // Mobile Styles (Dropdown Mode)
+                                                    isDropdownOpen 
+                                                        ? "absolute z-50 top-full left-0 right-0 mt-2 bg-white p-4 rounded-xl shadow-xl border border-slate-100 flex" 
+                                                        : "hidden",
+                                                    // Desktop Styles (Always Visible Grid)
+                                                    "md:flex md:static md:bg-transparent md:p-0 md:border-none md:shadow-none"
+                                                )}>
                                                     {services.map(service => (
                                                         <button
                                                             key={service}
                                                             type="button"
                                                             onClick={() => toggleService(service)}
                                                             className={cn(
-                                                                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border",
+                                                                "px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border text-left",
                                                                 selectedServices.includes(service)
                                                                     ? "bg-acumen-primary text-white border-acumen-primary shadow-md shadow-acumen-primary/20"
                                                                     : "bg-white text-slate-500 border-slate-200 hover:border-acumen-primary/50 hover:text-acumen-primary"
@@ -220,6 +245,11 @@ const ContactUs = () => {
                                                         </button>
                                                     ))}
                                                 </div>
+                                                
+                                                {/* Mobile Backdrop to close dropdown */}
+                                                {isDropdownOpen && (
+                                                    <div className="fixed inset-0 z-40 md:hidden" onClick={() => setIsDropdownOpen(false)} />
+                                                )}
                                             </div>
 
                                             <div className="space-y-2">
