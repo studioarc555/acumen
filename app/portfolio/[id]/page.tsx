@@ -11,35 +11,34 @@ import {
     BarChart3,
     ArrowUpRight
 } from "lucide-react";
-import Navbar from "@/components/Navbar"; // Adjust path as needed
-import { CTA } from "@/components/CTA";   // Adjust path as needed
-import Footer from "@/components/Footer"; // Adjust path as needed
-import { Button } from "@/components/ui/Button"; // Adjust path as needed
+import Navbar from "@/components/Navbar"; 
+import { CTA } from "@/components/CTA";   
+import Footer from "@/components/Footer"; 
+import { Button } from "@/components/ui/Button"; 
 import { cn } from "@/lib/utils";
 
-// --- RE-IMPORT DATA (Or import from a shared data file) ---
-// In a real app, keep this in a separate file (e.g., data/projects.ts)
+
 const PROJECTS = [
     {
         id: 1,
         client: "DSenergize",
         title: "Solar IoT Analytics Platform",
         category: "Web&App Development",
-        image: "/assets/DSElog.jpg",
+        image: "/assets/dse.png",
         stat: "Max Energy Gen",
         desc: "Development of a cloud-based energy management dashboard allowing real-time remote monitoring, predictive maintenance, and data logging for solar assets.",
         website: "https://dsenergize.com/",
         challenge: "Solar plant owners faced inefficiencies due to a lack of real-time visibility into asset performance, leading to prolonged downtimes and unoptimized energy generation.",
         approach: "We engineered a robust IoT-enabled platform that connects directly with solar dataloggers. The system processes gigabytes of telemetry data to provide instant alerts and predictive maintenance schedules.",
-        stack: ["React Native", "Express.js", "Node.js", "AWS IoT Core", "MONGODB", "Tailwind CSS"],
+        stack: ["React.js", "TypeScript", "Node.js", "MongoDB", "Express.js", "Docker", "Tailwind CSS"],
         result: "Enabled 24/7 remote monitoring for over 50MW of solar assets, reducing maintenance response time by 60%."
     },
     {
         id: 2,
-        client: "ReqX",
+        client: "REQX",
         title: "Global IT Talent Portal",
         category: "Web Development",
-        image: "/assets/ReqX.jpeg",
+        image: "/assets/reqx.png",
         stat: "Top-Tier Vetting",
         desc: "Designing a corporate digital interface to connect businesses with executive IT talent and specialized consulting services for digital transformation.",
         website: "https://reqxtechnology.com",
@@ -67,14 +66,13 @@ const PROJECTS = [
         client: "KrishiGRO",
         title: "Eco-Agri Brand Identity",
         category: "Branding",
-        image: "/assets/KG.jpg",
+        image: "/assets/KG.png",
         stat: "Zero Emission Tech",
         desc: "Strategic brand positioning for the 'Tesla of Tillers,' launching the Bheem 1.0 electric multi-utility vehicle to revolutionize rural farming.",
-        website: "https://krishigro.com",
-        // Extended details (mock data for demo)
+        website: "https://www.krishigro.in/",
         challenge: "To position a complex agri-tech product as an accessible, powerful tool for rural farmers while appealing to modern investors.",
         approach: "We focused on the narrative of 'Strength meets Sustainability'. Visuals were designed to look robust and earthy, yet futuristic.",
-        stack: ["Brand Strategy", "Visual Identity", "Print Design", "Social Media Kit"],
+        stack: ["Wix", "React", "JavaScript", "Wix Velo", "Wix Forms"],
         result: "Successfully launched at the Agri-Expo 2024 with over 500 pre-orders."
     },
     {
@@ -82,13 +80,13 @@ const PROJECTS = [
         client: "SLV",
         title: "Global Consultancy Portal",
         category: "Website Development",
-        image: "/assets/SLV.jpeg",
+        image: "/assets/slv.png",
         stat: "5+ Sector Reach",
         desc: "Development of a corporate web platform showcasing end-to-end international market entry, procurement, and cross-border growth strategies.",
-        website: "https://slvglobal.com",
+        website: "https://www.spheralink.com/",
         challenge: "Consolidating diverse services (Healthcare, Construction, Energy) into a unified, professional digital experience.",
         approach: "We utilized a clean, corporate aesthetic with a modular CMS, allowing the client to easily update sector-specific case studies.",
-        stack: ["Next.js", "Tailwind CSS", "Framer Motion", "Sanity CMS"],
+        stack: ["Next.js", "React.js", "TypeScript", "Tailwind CSS", "Node.js", "Vercel"],
         result: "Reduced client inquiry response time by 40% due to better information architecture."
     },
     {
@@ -96,13 +94,13 @@ const PROJECTS = [
         client: "UMPL",
         title: "EV Ecosystem Visibility",
         category: "Search Engine Optimization",
-        image: "/assets/UMPL.jpg",
+        image: "/assets/umpl.png",
         stat: "Net Zero Aligned",
         desc: "Comprehensive SEO strategy to position 'eMOTION' retrofit kits as a central hub in India's EV ecosystem and self-reliant mobility goals.",
-        website: "https://umpl.in",
+        website: "https://www.uveramobility.com/",
         challenge: "Low organic visibility for niche keywords like 'Retrofitting' and 'EV Conversion' in a crowded automotive market.",
         approach: "We implemented a topic-cluster strategy, creating high-value content around government policies (FAME-II) and technical guides.",
-        stack: ["Technical SEO", "Content Strategy", "Backlink Outreach", "Google Analytics 4"],
+        stack: ["HTML", "CSS", "JavaScript", "Responsive Web Design", "Bootstrap", "PHP"],
         result: "Organic traffic doubled in 6 months; ranked #1 for 'EV Kit Delhi'."
     },
     {
@@ -113,7 +111,7 @@ const PROJECTS = [
         image: "/assets/NFI.png",
         stat: "Real-Time Processing",
         desc: "UI/UX design and development for a drag-and-drop AI platform, enabling real-time visual data analytics and edge computing for drones.",
-        website: "https://nfi.ai",
+        website: "https://neuroforgeinnovation.com/",
         challenge: "Simplifying complex AI data processing into a user-friendly 'Drag & Drop' interface for non-technical users.",
         approach: "We adopted a dashboard-first design, focusing on data visualization and minimal latency interactions.",
         stack: ["React", "TypeScript", "D3.js", "WebSockets", "Node.js"],

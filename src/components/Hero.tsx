@@ -7,11 +7,11 @@ import Image from "next/image";
 // Logo data - same as in ClientLogos component
 const logos = [
   { name: "DSE", src: "/assets/DSElog.jpg" },
-  { name: "KG", src: "/assets/KG.jpg" },
-  { name: "ReqX", src: "/assets/ReqX.jpeg" },
-  { name: "UMPL", src: "/assets/UMPL.jpg" },
-  { name: "SLV", src: "/assets/SLV.jpeg" },
-  { name: "NFI", src: "/assets/NFI.png" },
+  { name: "KG", src: "/assets/KGlog.jpg" },
+  { name: "ReqX", src: "/assets/REQXlog.webp" },
+  { name: "UMPL", src: "/assets/UMPlog.jpg" },
+  { name: "SLV", src: "/assets/SLVlog.jpeg" },
+  { name: "NFI", src: "/assets/NFIlog.png" },
   { name: "ShapeIQ", src: "/assets/ShapeIQ.jpg" },
 ];
 

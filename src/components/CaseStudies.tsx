@@ -57,7 +57,7 @@ export const CaseStudies = () => {
                     <Link href="/allcasestudies" className="hidden md:block">
                         <Button
                             variant="secondary"
-                            className="border-acumen-primary hover:border-acumen-primary"
+                            className="border-acumen-primary"
                         >
                             View All Work
                         </Button>
