@@ -14,7 +14,7 @@ import Link from "next/link";
 import { Button } from "../ui/Button";
 
 // --- DATA (Updated with Real Stock Images for UI Demo) ---
-const CATEGORIES = ["All", "Branding", "Web-Development", "Marketing", "Strategy", "App Development", "Search Engine Optimization"];
+const CATEGORIES = ["All", "Branding", "Web Development", "Marketing", "Strategy", "App Development", "Search Engine Optimization"];
 
 const PROJECTS = [
     {
