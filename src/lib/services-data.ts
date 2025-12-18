@@ -26,7 +26,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     description: "Scalable, high-performance web platforms and e-commerce solutions.",
     longDescription: "We build more than just websites; we build digital infrastructure. Our web development team focuses on creating scalable, secure, and high-performance platforms using the latest technologies like Next.js and React. Whether it's a complex SaaS platform or a high-traffic e-commerce site, we ensure your code is clean and future-proof.",
     features: ["Custom CMS Solutions", "E-commerce Architecture", "Progressive Web Apps (PWA)", "API Integrations", "Database Design", "Cloud Infrastructure"],
-    image: "https://images.unsplash.com/photo-1610563166150-b34df4f3bcd6?q=80&w=1076&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    image: "/assets/WD.png"
   },
   {
     slug: "ui-ux-design",
@@ -71,6 +71,6 @@ export const SERVICES_DATA: ServiceItem[] = [
     description: "Technical SEO and deep analytical insights for top organic ranking.",
     longDescription: "Visibility is the currency of the internet. We ensure your site ranks for the keywords that matter most to your business. We move beyond basic keywords to implement technical SEO fixes, schema markup, and advanced analytics setups.",
     features: ["Technical Site Audits", "Keyword Strategy & Research", "Backlink Campaigns", "Google Analytics 4 Setup", "Local SEO", "Performance Optimization"],
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000"
+    image: "/assets/SEO.png"
   },
 ];
