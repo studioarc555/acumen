@@ -240,10 +240,7 @@ function ServiceContent({ service }: { service: typeof SERVICES_DATA[0] }) {
                     </h3>
                   </div>
 
-                  {/* FOLDER CONTAINER 
-                      - Added overflow-hidden: Prevents cards from showing outside the folder
-                      - Added z-0: Base layer for the back of the folder
-                  */}
+                  {/* FOLDER CONTAINER */}
                   <div className="relative bg-[#EAE8EC] rounded-t-[3rem] border-t border-l border-r border-white/50 shadow-2xl px-6 md:px-12 pt-12 pb-32 -mb-20 min-h-[600px] overflow-hidden z-0">
                       
                       {/* Folder Tab (Visual) */}
