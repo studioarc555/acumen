@@ -6,35 +6,39 @@ export const StatsAndPartners = () => {
   ];
 
   return (
-    // FIX 1: Section background changed to a light, subtle brand tint (bg-acumen-primary/5)
-    // FIX 2: Text color changed from white to the darkest brand color (text-acumen-secondary)
-    <section className="py-8 bg-acumen text-acumen-secondary relative overflow-hidden">
-      {/* Background Overlay is removed as it was intended for a dark background */}
-      {/* <div className="absolute inset-0 bg-[hsl(277,72%,26%)]/20 mix-blend-overlay" /> */}
+    <section className="relative py-16 bg-[#07060D] overflow-hidden">
+      
+      {/* Ambient Glow */}
+      <div className="absolute -top-1/2 left-1/3 w-[600px] h-[600px] bg-purple-900/30 blur-[160px] rounded-full" />
+      <div className="absolute -bottom-1/2 right-1/3 w-[500px] h-[500px] bg-indigo-900/25 blur-[140px] rounded-full" />
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* FIX 3: Dividers changed to a subtle light purple tint visible on the light background */}
-        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-acumen-light/30 border border-acumen-primary/10 rounded-3xl overflow-hidden bg-white shadow-xl">
+        <div className="grid grid-cols-1 md:grid-cols-3 rounded-3xl border border-white/10 overflow-hidden
+                        bg-white/[0.03] backdrop-blur-xl shadow-[0_30px_80px_-30px_rgba(99,102,241,0.35)]">
+
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              // FIX 4: Card background set to a light color for contrast (bg-acumen-primary/10)
-              // Hover effect provides subtle depth (hover:bg-acumen-primary/20)
-              className="p-10 text-center group bg-acumen-primary/10 hover:bg-acumen-primary/20 transition-all duration-300"
+              className="p-10 text-center group transition-all duration-500
+                         hover:bg-white/[0.06]
+                         border-b md:border-b-0
+                         md:border-r last:md:border-r-0
+                         border-white/10"
             >
-              <p
-                // FIX 5: Stats numbers are now the primary dark color
-                className="font-serif text-5xl md:text-6xl font-bold mb-2 text-acumen-secondary"
-              >
+              {/* VALUE */}
+              <p className="font-serif text-5xl md:text-6xl font-bold mb-3
+                            bg-gradient-to-r from-purple-300 to-indigo-300
+                            bg-clip-text text-transparent">
                 {stat.value}
               </p>
 
-              {/* FIX 6: Label text uses the lighter shade of the brand color */}
-              <p className="text-acumen-light font-medium tracking-wide uppercase text-sm">
+              {/* LABEL */}
+              <p className="text-white/60 tracking-widest uppercase text-sm font-medium">
                 {stat.label}
               </p>
             </div>
           ))}
+
         </div>
       </div>
     </section>

@@ -9,7 +9,7 @@
     --font-serif: "Playfair Display", serif;
 
     /* Custom Color Variables (useful for defining theme colors outside of utility classes) */
-    --acumen-primary: hsl(277,72%,26%);
+    --acumen-primary: hsl(169, 71%, 26%)
     --acumen-secondary: hsl(277,72%,22%);
   }
 
