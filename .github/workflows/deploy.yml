@@ -1,0 +1,34 @@
+name: Deploy to Hostinger VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script: |
+            # Go to project directory on VPS
+            cd /var/www/acumen
+
+            # Pull latest code
+            git pull origin main
+
+            # Install dependencies
+            npm install
+
+            # Build the Next.js app
+            npm run build
+
+            # Restart app using PM2
+            pm2 restart acumen

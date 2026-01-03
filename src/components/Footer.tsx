@@ -53,7 +53,7 @@ export const Footer = () => {
           <div className="md:col-span-5">
             <a href="/" className="flex items-center gap-3 mb-6">
               <img
-                src="/assets/TheArc.gif"
+                src="/assets/ACUMEN.gif"
                 alt="Acumen Logo"
                 className="w-10 h-10"
               />

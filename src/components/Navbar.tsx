@@ -62,7 +62,7 @@ const Navbar = () => {
             className="flex items-center gap-2"
           >
             <img
-              src="/assets/TheArc.gif"
+              src="/assets/ACUMEN.gif"
               alt="The Acumen Arc"
               className="w-9 h-9 object-contain"
             />

@@ -61,3 +61,5 @@ C:/Users/shahb/.gradle/caches/
 .gradle/
 local.properties
 *.iml
+# clerk configuration (can include secrets)
+/.clerk/
