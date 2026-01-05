@@ -11,47 +11,64 @@ const RADIUS = 380;
 const ANGLE_STEP = 21;
 
 // Swipe tuning
-const WHEEL_STEP = 140; // distance for one card shift
+const WHEEL_STEP = 140;
+const TOUCH_STEP = 120;
 
 export const Services = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // Wheel
   const wheelAccumulation = useRef(0);
 
+  // Touch
+  const touchStartX = useRef(0);
+  const touchDeltaX = useRef(0);
+
+  /** ---------- TRACKPAD / MOUSE ---------- */
   const handleWheel = (e: {
     deltaX: number;
     deltaY: number;
     preventDefault: () => void;
   }) => {
-    // Ignore vertical scrolling
     if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
-
     e.preventDefault();
 
-    // Accumulate horizontal delta
     wheelAccumulation.current += e.deltaX;
-
-    // Determine how many steps to move
     const steps = Math.trunc(wheelAccumulation.current / WHEEL_STEP);
+    if (!steps) return;
 
-    if (steps === 0) return;
+    setActiveIndex((prev) =>
+      Math.max(0, Math.min(prev + steps, SERVICES_DATA.length - 1))
+    );
 
-    setActiveIndex((prev) => {
-      let next = prev + steps;
-
-      // Clamp within bounds
-      next = Math.max(0, Math.min(next, SERVICES_DATA.length - 1));
-
-      return next;
-    });
-
-    // Remove consumed delta
     wheelAccumulation.current -= steps * WHEEL_STEP;
+  };
+
+  /** ---------- TOUCH (MOBILE) ---------- */
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    touchDeltaX.current =
+      touchStartX.current - e.touches[0].clientX;
+  };
+
+  const onTouchEnd = () => {
+    const steps = Math.trunc(touchDeltaX.current / TOUCH_STEP);
+    if (!steps) return;
+
+    setActiveIndex((prev) =>
+      Math.max(0, Math.min(prev + steps, SERVICES_DATA.length - 1))
+    );
+
+    touchDeltaX.current = 0;
   };
 
   return (
     <section
       id="services"
-      className="relative bg-[#0F0B1D] py-34 overflow-hidden"
+      className="relative bg-[#0F0B1D] py-36 overflow-hidden"
     >
       {/* Ambient glows */}
       <div className="absolute -top-44 right-[-22%] w-[780px] h-[780px] bg-purple-600/25 blur-[170px]" />
@@ -59,7 +76,7 @@ export const Services = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="mb-22 max-w-2xl">
+        <div className="mb-24 max-w-2xl">
           <span className="text-sm uppercase tracking-widest text-purple-400">
             Our Expertise
           </span>
@@ -68,16 +85,13 @@ export const Services = () => {
           </h2>
         </div>
 
-        {/* CENTERED SEMI-CIRCLE */}
+        {/* CARD AREA */}
         <div
-          className="
-            relative
-            h-[580px]
-            flex
-            items-center
-            justify-center
-          "
+          className="relative h-[620px] flex items-center justify-center"
           onWheel={handleWheel}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
         >
           {SERVICES_DATA.map((service, idx) => {
             const offset = idx - activeIndex;
@@ -100,7 +114,6 @@ export const Services = () => {
                 }}
                 transition={{ duration: 0.55, ease: "easeOut" }}
               >
-                {/* CARD */}
                 <div className="w-[380px] sm:w-[420px] md:w-[660px]">
                   <Link href={`/services/${service.slug}`}>
                     <div
@@ -144,8 +157,8 @@ export const Services = () => {
           })}
         </div>
 
-        {/* DOT PAGINATION */}
-        <div className="mt-18 flex justify-center">
+        {/* DOTS — now safely below */}
+        <div className="mt-24 flex justify-center relative z-20">
           <div className="flex items-center gap-2 bg-black/30 backdrop-blur px-4 py-3 rounded-full">
             {SERVICES_DATA.map((_, idx) => (
               <button
