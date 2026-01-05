@@ -6,63 +6,77 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { SERVICES_DATA } from "@/lib/services-data";
 
-const RADIUS = 260;
-const ANGLE_STEP = 18;
+// Geometry (UNCHANGED)
+const RADIUS = 380;
+const ANGLE_STEP = 21;
+
+// Swipe tuning
+const WHEEL_STEP = 140; // distance for one card shift
 
 export const Services = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const swipeLock = useRef(false);
+  const wheelAccumulation = useRef(0);
 
-  const handleWheel = (e: { deltaX: number; deltaY: number; preventDefault: () => void; }) => {
-    // 🛑 ignore vertical scroll
+  const handleWheel = (e: {
+    deltaX: number;
+    deltaY: number;
+    preventDefault: () => void;
+  }) => {
+    // Ignore vertical scrolling
     if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
 
     e.preventDefault();
 
-    // prevent rapid swipes
-    if (swipeLock.current) return;
-    swipeLock.current = true;
+    // Accumulate horizontal delta
+    wheelAccumulation.current += e.deltaX;
 
-    // 👉 swipe left (two-finger left)
-    if (e.deltaX > 0) {
-      setActiveIndex((prev) =>
-        Math.min(prev + 1, SERVICES_DATA.length - 1)
-      );
-    }
+    // Determine how many steps to move
+    const steps = Math.trunc(wheelAccumulation.current / WHEEL_STEP);
 
-    // 👈 swipe right (two-finger right)
-    if (e.deltaX < 0) {
-      setActiveIndex((prev) => Math.max(prev - 1, 0));
-    }
+    if (steps === 0) return;
 
-    setTimeout(() => {
-      swipeLock.current = false;
-    }, 600); // sync with animation
+    setActiveIndex((prev) => {
+      let next = prev + steps;
+
+      // Clamp within bounds
+      next = Math.max(0, Math.min(next, SERVICES_DATA.length - 1));
+
+      return next;
+    });
+
+    // Remove consumed delta
+    wheelAccumulation.current -= steps * WHEEL_STEP;
   };
 
   return (
     <section
       id="services"
-      className="relative bg-[#0F0B1D] py-28 overflow-hidden"
+      className="relative bg-[#0F0B1D] py-34 overflow-hidden"
     >
       {/* Ambient glows */}
-      <div className="absolute -top-40 right-[-20%] w-[700px] h-[700px] bg-purple-600/25 blur-[160px]" />
-      <div className="absolute bottom-[-40%] left-[-20%] w-[600px] h-[600px] bg-indigo-600/20 blur-[160px]" />
+      <div className="absolute -top-44 right-[-22%] w-[780px] h-[780px] bg-purple-600/25 blur-[170px]" />
+      <div className="absolute bottom-[-42%] left-[-22%] w-[700px] h-[700px] bg-indigo-600/20 blur-[170px]" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="mb-16 max-w-2xl">
+        <div className="mb-22 max-w-2xl">
           <span className="text-sm uppercase tracking-widest text-purple-400">
             Our Expertise
           </span>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mt-3">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white mt-4">
             Signature Services
           </h2>
         </div>
 
-        {/* SEMI-CIRCULAR STACK (TRACKPAD SWIPE) */}
+        {/* CENTERED SEMI-CIRCLE */}
         <div
-          className="relative h-[460px] flex items-center justify-center"
+          className="
+            relative
+            h-[580px]
+            flex
+            items-center
+            justify-center
+          "
           onWheel={handleWheel}
         >
           {SERVICES_DATA.map((service, idx) => {
@@ -71,52 +85,55 @@ export const Services = () => {
             const rad = (angle * Math.PI) / 180;
 
             const x = Math.sin(rad) * RADIUS;
-            const y = Math.abs(1 - Math.cos(rad)) * 80;
+            const y = Math.abs(1 - Math.cos(rad)) * 100;
 
             return (
               <motion.div
                 key={idx}
-                className="absolute"
+                className="absolute will-change-transform"
                 animate={{
                   x,
                   y,
-                  scale: idx === activeIndex ? 1 : 0.9,
+                  scale: idx === activeIndex ? 1 : 0.945,
                   opacity: Math.abs(offset) > 4 ? 0 : 1,
                   zIndex: 100 - Math.abs(offset),
                 }}
                 transition={{ duration: 0.55, ease: "easeOut" }}
               >
-                <div className="w-[320px] md:w-[520px]">
+                {/* CARD */}
+                <div className="w-[380px] sm:w-[420px] md:w-[660px]">
                   <Link href={`/services/${service.slug}`}>
                     <div
                       className="
-                        h-[340px] md:h-[420px]
-                        rounded-[2rem]
-                        p-8
+                        h-[390px]
+                        sm:h-[430px]
+                        md:h-[520px]
+                        rounded-[2.75rem]
+                        p-11
                         bg-white/5
                         border border-white/10
                         backdrop-blur-xl
                         hover:border-white/30
-                        hover:shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)]
+                        hover:shadow-[0_45px_100px_-30px_rgba(0,0,0,0.85)]
                         transition
                         flex flex-col justify-between
                       "
                     >
                       <div>
-                        <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-8">
-                          <service.icon className="w-7 h-7 text-purple-400" />
+                        <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-9">
+                          <service.icon className="w-8 h-8 text-purple-400" />
                         </div>
 
-                        <h3 className="font-serif text-2xl md:text-3xl font-semibold text-white mb-4">
+                        <h3 className="font-serif text-2xl md:text-4xl font-semibold text-white mb-5">
                           {service.title}
                         </h3>
 
-                        <p className="text-white/70 text-sm md:text-lg leading-relaxed">
+                        <p className="text-white/70 text-base md:text-lg leading-relaxed">
                           {service.description}
                         </p>
                       </div>
 
-                      <div className="flex items-center gap-2 text-sm font-semibold text-purple-400 uppercase tracking-widest mt-6">
+                      <div className="flex items-center gap-2 text-sm font-semibold text-purple-400 uppercase tracking-widest mt-9">
                         Learn more <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
@@ -128,18 +145,17 @@ export const Services = () => {
         </div>
 
         {/* DOT PAGINATION */}
-        <div className="mt-14 flex justify-center">
-          <div className="flex items-center gap-2 bg-black/30 backdrop-blur px-3 py-2 rounded-full">
+        <div className="mt-18 flex justify-center">
+          <div className="flex items-center gap-2 bg-black/30 backdrop-blur px-4 py-3 rounded-full">
             {SERVICES_DATA.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setActiveIndex(idx)}
                 className={`transition-all duration-300 rounded-full ${
                   idx === activeIndex
-                    ? "w-10 h-2 bg-purple-500"
-                    : "w-2 h-2 bg-white/40 hover:bg-white/70"
+                    ? "w-12 h-2 bg-purple-500"
+                    : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
                 }`}
-                aria-label={`Go to service ${idx + 1}`}
               />
             ))}
           </div>
